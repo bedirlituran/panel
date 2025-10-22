@@ -18,6 +18,7 @@ const problemOptions = [
 ];
 
 const menbeOptions = ["Zəng", "WhatsApp", "Sayt", "Digər"];
+const qosulmaOptions = ["Fiber", "GPON", "RF", "Radio"];
 
 const PanelRequestsLocal = () => {
   const [formData, setFormData] = useState({
@@ -187,13 +188,35 @@ const PanelRequestsLocal = () => {
             <option value="300 Mbit + TV">300 Mbit + TV</option>
           </select>
 
-          {/* Problem nov */}
-          {formData.tip === "Problem" && (
-            <select name="nov" value={formData.nov} onChange={handleChange} className={inputClass}>
-              <option value="">Problem növü</option>
-              {problemOptions.map((p, idx) => <option key={idx} value={p}>{p}</option>)}
-            </select>
-          )}
+     {/* Qoşulma nov */}
+{/* Qoşulma və ya Problem növü */}
+{formData.tip === "Problem" ? (
+  <select
+    name="nov"
+    value={formData.nov}
+    onChange={handleChange}
+    className={inputClass}
+  >
+    <option value="">Problem növü</option>
+    {problemOptions.map((p, idx) => (
+      <option key={idx} value={p}>{p}</option>
+    ))}
+  </select>
+) : (
+  <select
+    name="nov"
+    value={formData.nov}
+    onChange={handleChange}
+    className={inputClass}
+  >
+    <option value="">Qoşulma növü</option>
+    {["Fiber", "GPON", "RF", "Radio"].map((q, idx) => (
+      <option key={idx} value={q}>{q}</option>
+    ))}
+  </select>
+)}
+
+
 
           {/* Menbe select */}
           <select name="menbe" value={formData.menbe} onChange={handleChange} className={inputClass}>
